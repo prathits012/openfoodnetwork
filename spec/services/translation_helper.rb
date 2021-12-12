@@ -55,8 +55,17 @@ module Spree
     @translations ||= I18n.backend.__send__(:translations)[I18n.locale][:spree]
   end
   private_class_method :translations
-end
 
+
+  def self.check_unused_translations
+    self.used_translations ||= []
+    self.unused_translation_messages = []
+    translation_diff = unused_translations - used_translations
+    translation_diff.each do |translation|
+      Spree.unused_translation_messages << "#{translation} (#{I18n.locale})"
+    end
+  end
+end
 RSpec.configure do |config|
   # Need to check here again because this is used in i18n_spec too.
   if ENV['CHECK_TRANSLATIONS']

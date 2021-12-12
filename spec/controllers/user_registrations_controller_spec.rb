@@ -30,6 +30,20 @@ describe UserRegistrationsController, type: :controller do
       json = JSON.parse(response.body)
       expect(json).to eq("email" => ["can't be blank"], "password" => ["can't be blank"])
     end
+    
+    it "returns is too short errors" do
+      post: create, xhr: true, params: { spree_user: {}, use_route: :spree }
+      expect(response.status).to eq(401)
+      json = JSON.parse(response.body)
+      expect(json).to eq("password" => ["is too short (minimum is 6 characters)"])
+    end
+      
+    it "returns does not match errors" do
+      post: create, xhr: true, params: { spree_user: {}, use_route: :spree }
+      expect(response.status).to eq(401)
+      json = JSON.parse(response.body)
+      expect(json).to eq("password" => ["doesn't match"])
+    end
 
     it "returns error when emailing fails" do
       allow(Spree::UserMailer).to receive(:confirmation_instructions).and_raise("Some error")

@@ -82,9 +82,11 @@ en:
   stripe:
     error_code:
       incorrect_number: "The card number is incorrect."
+      incomplete_number: "Your card number is incomplete."
       invalid_number: "The card number is not a valid credit card number."
       invalid_expiry_month: "The card's expiration month is invalid."
       invalid_expiry_year: "The card's expiration year is invalid."
+      invalid_expiry_past: "Your card's expiration year is in the past."
       invalid_cvc: "The card's security code is invalid."
       expired_card: "The card has expired."
       incorrect_cvc: "The card's security code is incorrect."

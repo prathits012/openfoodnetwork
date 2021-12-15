@@ -23,6 +23,22 @@ describe UserRegistrationsController, type: :controller do
         password_confirmation: "testy123"
       }
     end
+    
+    let(:user_params_too_short) do
+      {
+        email: "test@test.com",
+        password: "123",
+        password_confirmation: "123"
+      }
+    end
+    
+    let(:user_params_empty) do
+      {
+        email: "test@test.com",
+        password: "123",
+        password_confirmation: ""
+      }
+    end
 
     it "returns validation errors" do
       post :create, xhr: true, params: { spree_user: {}, use_route: :spree }
@@ -32,14 +48,14 @@ describe UserRegistrationsController, type: :controller do
     end
     
     it "returns is too short errors" do
-      post :create, xhr: true, params: { spree_user: {}, use_route: :spree }
+      post :create, xhr: true, params: { spree_user: user_params_too_short, use_route: :spree }
       expect(response.status).to eq(401)
       json = JSON.parse(response.body)
       expect(json).to eq("password" => ["is too short (minimum is 6 characters)"])
     end
       
     it "returns does not match errors" do
-      post :create, xhr: true, params: { spree_user: {}, use_route: :spree }
+      post :create, xhr: true, params: { spree_user: user_param_empty, use_route: :spree }
       expect(response.status).to eq(401)
       json = JSON.parse(response.body)
       expect(json).to eq("password" => ["doesn't match"])

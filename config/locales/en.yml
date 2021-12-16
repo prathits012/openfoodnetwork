@@ -139,6 +139,7 @@ en:
       spree_user:
         cannot_be_blank: "User password cannot be blank. Please enter a password."
         is_too_short: "is too short (minimum is 6 characters)"
+        not_match: "doesn't match password"
     confirmations:
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
       failed_to_send: "An error occurred whilst sending your confirmation email."

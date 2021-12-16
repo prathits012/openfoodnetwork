@@ -469,6 +469,7 @@ en_DE:
         not_updatable: cannot be updated on existing products via product import
         blank: can't be blank
         too_short: is too short (minimum is 6 characters)
+        not_match: doesn't match password
         products_no_permission: you do not have permission to manage products for this enterprise
         inventory_no_permission: you do not have permission to create inventory for this producer
         none_saved: did not save any products successfully
